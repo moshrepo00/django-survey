@@ -1,0 +1,30 @@
+<div>
+ Create a new survey
+
+ <div>
+  <form action="{% url 'surveys:create' %}" method="post">
+  {% csrf_token %}
+
+    <label for="survey_title">Enter title of survey</label>
+    <input type="text" id="survey_title" required>
+    <input type="submit">
+  </form>
+ </div>
+
+</div>
+
+<div>
+ {% if survey_list %}
+    <ul>
+      {% for survey in survey_list %}
+        <li>
+           Title:
+            <a href="{% url 'surveys:detail' survey.id %}">
+             {{survey.survey_title}} 
+            </a>
+            Published: {{survey.published}}
+        </li>
+      {% endfor %}
+    </ul>
+ {% endif %}
+</div>
